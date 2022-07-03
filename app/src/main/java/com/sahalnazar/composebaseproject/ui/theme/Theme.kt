@@ -37,7 +37,7 @@ fun ComposeBaseProjectTheme(darkTheme: Boolean = isSystemInDarkTheme(), content:
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        typography = AppTypography,
         shapes = Shapes,
         content = content
     )
