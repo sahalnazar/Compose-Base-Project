@@ -22,7 +22,7 @@ val AppTypography = Typography(
         fontSize = 96.sp,
         fontWeight = FontWeight.Light,
         lineHeight = 117.sp,
-        letterSpacing = (-1.5).sp
+        letterSpacing = (-1.5).sp,
     ),
     h2 = TextStyle(
         fontFamily = RobotoFontFamily,
