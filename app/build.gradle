@@ -1,8 +1,10 @@
 import com.sahalnazar.composebaseproject.buildsrc.Libs
+import com.sahalnazar.composebaseproject.buildsrc.Versions
 
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -27,6 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -38,7 +41,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion "1.1.1"
     }
     packagingOptions {
         resources {
@@ -46,36 +49,52 @@ android {
         }
     }
     ext {
-        compose_version = '1.1.1'
+        compose_version = Versions.composeCompilerVersion
     }
 }
 
 dependencies {
     implementation Libs.Kotlin.stdlib
     implementation Libs.Coroutines.android
+    implementation Libs.Coroutines.core
+    testImplementation(Libs.Coroutines.test)
 
-    implementation Libs.AndroidX.coreKtx
-    implementation Libs.AndroidX.palette
+    implementation Libs.coreKtx
+    implementation Libs.palette
+    implementation Libs.appcompat
+    implementation Libs.activityCompose
 
+    implementation Libs.Compose.foundation
+    implementation Libs.Compose.material
+    implementation Libs.Compose.materialIconsExtended
+    implementation Libs.Compose.toolingPreview
+    debugImplementation Libs.Compose.tooling
 
-    implementation Libs.AndroidX.Compose.foundation
-    implementation Libs.AndroidX.Compose.material
-    implementation Libs.AndroidX.Compose.materialIconsExtended
-    implementation Libs.AndroidX.Compose.toolingPreview
-    debugImplementation Libs.AndroidX.Compose.tooling
-
-    implementation Libs.AndroidX.Lifecycle.runtime
-    implementation Libs.AndroidX.Lifecycle.viewmodel
-    implementation Libs.AndroidX.Lifecycle.viewModelCompose
-    implementation Libs.AndroidX.Navigation.navigation
+    implementation Libs.Lifecycle.runtime
+    implementation Libs.Lifecycle.viewModel
+    implementation Libs.Lifecycle.viewModelCompose
+    implementation Libs.Navigation.navigation
 
     implementation Libs.Accompanist.pager
 
     implementation Libs.Coil.coilCompose
 
-    implementation Libs.OkHttp.okhttp
-    implementation Libs.OkHttp.logging
 
-    implementation Libs.AndroidX.Room.runtime
-    implementation Libs.AndroidX.Room.ktx
+    implementation Libs.Room.runtime
+    implementation Libs.Room.ktx
+
+    testImplementation(Libs.JUnit.junit)
+
+    implementation Libs.JsonSerialization.jsonSerialization
+
+    implementation(Libs.Retrofit.okhttp)
+    implementation(platform(Libs.Retrofit.okhttpBom))
+    implementation(Libs.Retrofit.okhttpLogInterceptor)
+    implementation(Libs.Retrofit.serializationConverter)
+    implementation(Libs.Retrofit.retrofit)
+
+
+    implementation(Libs.Timber.timber)
+    implementation(Libs.DataStore.dataStore)
+
 }
